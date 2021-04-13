@@ -1,11 +1,11 @@
 <template>
   <div id="app">
     <div id="nav">
-      <top-header></top-header>
+      <top-header @searchForJobs="searchJobs"></top-header>
       <!-- <router-link to="/">Home</router-link> | -->
       <!-- <router-link to="/about">About</router-link> -->
     </div>
-    <router-view />
+    <router-view :searchValue="searchValue" :key="searchValue" />
   </div>
 </template>
 
@@ -13,8 +13,18 @@
 import TopHeader from '@/components/TopHeader.vue'
 
 export default {
+  data() {
+    return {
+      searchValue: ''
+    }
+  },
   components: {
     'top-header': TopHeader
+  },
+  methods: {
+    searchJobs(searchValue) {
+      this.searchValue = searchValue
+    }
   }    
 }
 </script>

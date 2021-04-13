@@ -13,6 +13,7 @@
       last-text="Last"
       @input="paginate(currentPage)"
     ></b-pagination>
+    <p>Val: {{ searchValue }}</p>
   </b-container>
 </template>
 
@@ -22,6 +23,7 @@ import JobCard from "@/components/JobCard.vue";
 export default {
   name: "Home",
   components: { "job-card": JobCard },
+  props: ['searchValue'],
   mounted() {
     this.fetchData();
   },
@@ -38,10 +40,11 @@ export default {
     async fetchData() {
       const res = await fetch("jobs.json");
       const val = await res.json();
-      this.jobs = val;
-      this.displayJobs = val.slice(0, 3);
+      const result = (this.searchValue ? val.filter((x) => x.name.includes(this.searchValue)) : val)
+      this.jobs = result;
+      this.displayJobs = result.slice(0, 3);
       this.rows = this.jobs.length;
-      console.log(val);
+      console.log(result);
     },
     paginate(currentPage) {
       const start = (currentPage - 1) * this.perPage
