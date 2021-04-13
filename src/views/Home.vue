@@ -13,7 +13,6 @@
       last-text="Last"
       @input="paginate(currentPage)"
     ></b-pagination>
-    <p>Val: {{ searchValue }}</p>
   </b-container>
 </template>
 
@@ -44,7 +43,6 @@ export default {
       this.jobs = result;
       this.displayJobs = result.slice(0, 3);
       this.rows = this.jobs.length;
-      console.log(result);
     },
     paginate(currentPage) {
       const start = (currentPage - 1) * this.perPage
