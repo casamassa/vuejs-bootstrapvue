@@ -42,17 +42,9 @@ export default new Vuex.Store({
   },
   modules: {},
   getters: {
-    getAllJobs(state){
-      return state.allJobs;
-    },
-    getDisplayJobs(state){
-      return state.displayJobs;
-    },
-    getSearchValue(state){
-      return state.searchValue;
-    },
-    getJobsRows(state){
-      return state.jobsRows;
-    }
+    getAllJobs: state => state.allJobs,
+    getDisplayJobs: state => state.displayJobs,
+    getSearchValue: state => state.searchValue,
+    getJobsRows: state => state.jobsRows
   }
 });

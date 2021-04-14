@@ -1,23 +1,25 @@
 <template>
   <div id="app">
     <div id="nav">
-      <top-header></top-header>
-      <!-- <router-link to="/">Home</router-link> | -->
-      <!-- <router-link to="/about">About</router-link> -->
+      <top-head></top-head>
     </div>
     <router-view />
   </div>
 </template>
 
 <script>
-import TopHeader from '@/components/TopHeader.vue'
+import {mapActions} from 'vuex'
+import TopHead from '@/components/TopHead.vue'
 
 export default {
   components: {
-    'top-header': TopHeader
+    'top-head': TopHead
+  },
+  methods: {
+    ...mapActions({setAllJobs: 'setAllJobs'})
   },
   mounted() {
-    this.$store.dispatch("setAllJobs");
+    this.setAllJobs()
   }
 }
 </script>
