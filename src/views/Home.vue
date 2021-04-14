@@ -2,13 +2,18 @@
   <b-container>
     <b-row align-v="center">
       <template v-if="displayJobs.length">
-        <job-card v-for="job in displayJobs" :key="job.id" :name="job.name"></job-card>
+        <job-card
+          v-for="job in displayJobs"
+          :key="job.id"
+          :name="job.name"
+        ></job-card>
       </template>
       <template v-else>
         <b-col class="text-center">No results</b-col>
       </template>
     </b-row>
-    <b-pagination v-if="jobsRows/this.perPage>1"
+    <b-pagination
+      v-if="jobsRows / this.perPage > 1"
       v-model="currentPage"
       :total-rows="jobsRows"
       :per-page="perPage"
@@ -23,7 +28,7 @@
 
 <script>
 // @ is an alias to /src
-import {mapGetters} from 'vuex'
+import { mapGetters } from "vuex";
 import JobCard from "@/components/JobCard.vue";
 
 export default {
@@ -36,16 +41,20 @@ export default {
     };
   },
   computed: {
-    ...mapGetters({jobs: 'getAllJobs', jobsRows: 'getJobsRows', getDisplayJobs: 'getDisplayJobs'}),
+    ...mapGetters({
+      jobs: "getAllJobs",
+      jobsRows: "getJobsRows",
+      getDisplayJobs: "getDisplayJobs",
+    }),
     displayJobs() {
-      const start = (this.currentPage - 1) * this.perPage
+      const start = (this.currentPage - 1) * this.perPage;
       return this.getDisplayJobs.slice(start, start + this.perPage);
-    }
+    },
   },
   methods: {
     paginate(currentPage) {
-      this.currentPage = currentPage
-    }
+      this.currentPage = currentPage;
+    },
   },
 };
 </script>

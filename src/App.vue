@@ -8,22 +8,21 @@
 </template>
 
 <script>
-import {mapActions} from 'vuex'
-import TopHead from '@/components/TopHead.vue'
+import { mapActions } from "vuex";
+import TopHead from "@/components/TopHead.vue";
 
 export default {
   components: {
-    'top-head': TopHead
+    "top-head": TopHead,
   },
   methods: {
-    ...mapActions({setAllJobs: 'setAllJobs'})
+    ...mapActions({ setAllJobs: "setAllJobs" }),
   },
   mounted() {
-    this.setAllJobs()
-  }
-}
+    this.setAllJobs();
+  },
+};
 </script>
-
 
 <style lang="scss">
 #app {
